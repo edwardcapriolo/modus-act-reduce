@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <sstream> 
+#include <vector>
 using namespace std;
 
 class feed_partition {
