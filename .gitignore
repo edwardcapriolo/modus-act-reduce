@@ -5,3 +5,4 @@ Makefile
 nbproject
 uds/libuds.a
 api/libactred-api.a
+apidemo/mapjobex
