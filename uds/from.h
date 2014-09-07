@@ -16,5 +16,9 @@ public:
   int id;    
 };
 
+bool operator == (const from& lhs, const from& rhs){
+  return lhs.id == rhs.id;
+}
+
 #endif	/* FROM_H */
 

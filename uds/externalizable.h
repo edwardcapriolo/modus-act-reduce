@@ -11,8 +11,6 @@
 #include <pqxx/pqxx> 
 #include "from.h"
 using namespace std;
-using namespace modus;
-using namespace caf;
 
 using namespace pqxx;
 
@@ -36,6 +34,10 @@ public:
    */
   void internalize(result & r) {}
 };
+
+bool operator == (const externalizable& lhs, const externalizable& rhs){
+  return false;
+}
 
 
 
