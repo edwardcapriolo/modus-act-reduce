@@ -4,5 +4,5 @@ project (modus-act-reduce)
 
 add_subdirectory (uds)
 #add_subdirectory (udsdemo)
-#add_subdirectory (api)
+add_subdirectory (api)
 #add_subdirectory (apidemo)
