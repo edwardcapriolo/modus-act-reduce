@@ -2,3 +2,6 @@ CMakeCache.txt
 CMakeFiles
 cmake_install.cmake
 Makefile
+nbproject
+uds/libuds.a
+api/libactred-api.a
