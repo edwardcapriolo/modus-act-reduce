@@ -3,7 +3,7 @@
 
 class insert_request {
 public:
-  externalizable t;
+  externalizable * t;
   from f;
 };
 

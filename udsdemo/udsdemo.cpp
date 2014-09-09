@@ -2,7 +2,9 @@
 #include "caf/io/all.hpp"
 #include "externalizable.h"
 #include "uds.h"
-
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <caf/variant.hpp>
 
 using namespace caf;
 
@@ -14,14 +16,30 @@ public:
   int x;
 };
 
+class somearch {
+private:
+    friend class boost::serialization::access;
+public:
+  somearch();
+  int degrees;
+  int minutes;
+  int seconds;
+  template <class Archive>
+  void serialize(Archive ar, const unsigned int version){
+    ar & degrees;
+    ar & minutes;
+    ar & seconds;
+  }
+};
+
 bool operator == (const someext& lhs, const someext& rhs){
     return lhs.x == rhs.x;
 }
 class mapper {
 public:
-  void map(externalizable e, actor next){
+  void map(externalizable * e, actor next){
      someext * s;
-     s = (someext*) &e;
+     s = (someext*) e;
      cout << "I can do a pointer " << s->x;
   }
 };
@@ -39,7 +57,6 @@ void insert_request_actor(event_based_actor* self) {
   );
 }
 
-
 int main(){
   someext e;
   e.x=5;
@@ -49,7 +66,9 @@ int main(){
   
   insert_request r;
   r.f = f;
-  r.t = e;
+  r.t = &e;
+  
+  
   announce<someext>(&someext::x);
   announce<from>(&from::id);
   announce<insert_request>(&insert_request::f, &insert_request::t);
