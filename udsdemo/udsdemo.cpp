@@ -2,8 +2,6 @@
 #include "caf/io/all.hpp"
 #include "externalizable.h"
 #include "uds.h"
-#include <boost/archive/binary_iarchive.hpp>
-#include <boost/archive/binary_oarchive.hpp>
 #include <caf/variant.hpp>
 
 using namespace caf;
@@ -14,22 +12,6 @@ public:
   void create_store(connection & conn) {}
   void internalize(result & r) {}
   int x;
-};
-
-class somearch {
-private:
-    friend class boost::serialization::access;
-public:
-  somearch();
-  int degrees;
-  int minutes;
-  int seconds;
-  template <class Archive>
-  void serialize(Archive ar, const unsigned int version){
-    ar & degrees;
-    ar & minutes;
-    ar & seconds;
-  }
 };
 
 bool operator == (const someext& lhs, const someext& rhs){
