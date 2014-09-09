@@ -12,7 +12,7 @@ class someext : public externalizable {
 public:
   void externalize(work & work, from & f) {}
   void create_store(connection & conn) {}
-  virtual void internalize(result & r) {}
+  void internalize(result & r) {}
   int x;
 };
 
@@ -39,7 +39,7 @@ class mapper {
 public:
   void map(externalizable * e, actor next){
      someext * s;
-     //s = (someext*) e;
+     //s = (someext*) e; 
      s = dynamic_cast<someext*>(e);
      cout << "I can do a pointer " << s->x << endl;
   }
