@@ -24,15 +24,15 @@ public:
   /*
    * write this object out to work
    */
-  void externalize(work & work, from & f) {}
+  virtual void externalize(work & work, from & f) {}
   /*
    *create something this object can serialize itself to
    */
-  void create_store(connection & conn) {}
+  virtual void create_store(connection & conn) {}
   /*
    * use the result to set fields of this instance
    */
-  void internalize(result & r) {}
+  virtual void internalize(result & r) {}
 };
 
 bool operator == (const externalizable& lhs, const externalizable& rhs){

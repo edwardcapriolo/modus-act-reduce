@@ -39,8 +39,9 @@ class mapper {
 public:
   void map(externalizable * e, actor next){
      someext * s;
-     s = (someext*) e;
-     cout << "I can do a pointer " << s->x;
+     //s = (someext*) e;
+     s = dynamic_cast<someext*>(e);
+     cout << "I can do a pointer " << s->x << endl;
   }
 };
 void insert_request_actor(event_based_actor* self) {
