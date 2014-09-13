@@ -50,7 +50,7 @@ void insert_request_actor(event_based_actor* self) {
 
 int main(){
     
-  load_node("dyn", NULL,NULL);
+
   someext e;
   e.x=5;
   
@@ -61,6 +61,9 @@ int main(){
   r.f = f;
   r.t = &e;
   
+  cout << "dynamic";
+  node * cout_node = load_node("dyn", "coutnode", NULL,NULL);
+  cout_node->process(&e);
   
   //announce<someext>(&someext::x);
   announce<from>(&from::id);

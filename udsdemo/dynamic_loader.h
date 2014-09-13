@@ -25,7 +25,10 @@ map<string, maker_t *, less<string> > modus_node_factory;
 
 namespace modus {
 
-node * load_node(string module_name, event_based_actor * self, actor * next){
+/* construct a subclass of node. Construct it 
+ * 
+ */
+node * load_node(string module_name, string node_name, event_based_actor * self, actor * next){
   string path = "dyn/lib" + module_name + ".so";
   void *dlib;
   dlib = dlopen(path.c_str(), RTLD_NOW);
@@ -33,7 +36,7 @@ node * load_node(string module_name, event_based_actor * self, actor * next){
     cerr << dlerror() << endl;
     throw "Unable to open" ;
   }
-  node * my_node = modus_node_factory["coutnode"](self, next);
+  node * my_node = modus_node_factory[node_name](self, next);
   return my_node;
 }
 
