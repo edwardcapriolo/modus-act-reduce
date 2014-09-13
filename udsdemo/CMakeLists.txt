@@ -7,4 +7,4 @@ link_directories (${PROJECT_SOURCE_DIR}/../modus/guild )
 
 add_executable (udsdemo udsdemo.cpp)
 
-target_link_libraries (udsdemo guild curl caf_core caf_io)
+target_link_libraries (udsdemo guild curl caf_core caf_io dl)

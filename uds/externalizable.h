@@ -33,6 +33,10 @@ public:
    * use the result to set fields of this instance
    */
   virtual void internalize(result & r) {}
+  /*
+   * Provide a hash code based on the object
+   */
+  virtual int hash_code(){}
 };
 
 bool operator == (const externalizable& lhs, const externalizable& rhs){
