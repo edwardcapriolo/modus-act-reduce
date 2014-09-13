@@ -7,6 +7,7 @@
 
 #include "coutnode.h"
 
+namespace modus {
 coutnode::coutnode( event_based_actor * parentc, actor * nextc) 
  : node (parentc, nextc) {
    
@@ -24,8 +25,10 @@ extern "C" {
   class proxy { 
     public:
      proxy(){
-      factory["coutnode"] = maker;
+        modus_node_factory["coutnode"] = maker;
      }
   };
   proxy p;
+}
+
 }

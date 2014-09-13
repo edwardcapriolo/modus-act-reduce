@@ -7,6 +7,7 @@
 
 
 using namespace caf;
+using namespace modus;
 
 class someext : public externalizable {
 public:
@@ -49,7 +50,7 @@ void insert_request_actor(event_based_actor* self) {
 
 int main(){
     
-    load();
+  load_node("dyn", NULL,NULL);
   someext e;
   e.x=5;
   

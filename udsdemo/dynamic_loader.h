@@ -8,6 +8,9 @@
 #ifndef DYNAMIC_LOADER_H
 #define	DYNAMIC_LOADER_H
 
+#include "caf/all.hpp"
+#include "caf/io/all.hpp"
+
 #include <string>
 #include <dlfcn.h>
 #include <stdio.h>
@@ -15,44 +18,26 @@
 #include <map>
 #include "node.h"
 
-
 using namespace std;
-static unsigned int BUF_SIZE = 1024;
 
-map<string, maker_t *, less<string> > factory;
+// This is here because the c dynamic loader is c++ namespace unaware ?
+map<string, maker_t *, less<string> > modus_node_factory;
 
-void load(){
-  list<void *> dl_list; 
+namespace modus {
+
+node * load_node(string module_name, event_based_actor * self, actor * next){
+  string path = "dyn/lib" + module_name + ".so";
   void *dlib;
-  dlib = dlopen("dyn/libdyn.so", RTLD_NOW);
+  dlib = dlopen(path.c_str(), RTLD_NOW);
   if(dlib == NULL){
     cerr << dlerror() << endl;
-    exit(-1);
+    throw "Unable to open" ;
   }
-  dl_list.insert(dl_list.end(), dlib);
-  node * mynode = factory["coutnode"](NULL, NULL);
-  cout << "load" << endl;
+  node * my_node = modus_node_factory["coutnode"](self, next);
+  return my_node;
 }
 
-/*
- FILE *dl;   // handle to read directory
-  char *command_str = "ls *.so";  // command
-  char in_buf[BUF_SIZE]; // input buffer for lib
-  list<void *> dl_list; // list to hold handles
-  list<void *>::iterator itr;
-  vector<string> node_names;  // vector of shape
-   list<node *> shape_list;
-   list<node *>::iterator sitr;
-   map<string, maker_t *, less<string> >::iterator fitr;
-   dl = popen(command_str, "r");
-   if(!dl){
-      perror("popen");
-      exit(-1);
-   }
-   void *dlib;
-   char name[1024]; 
- 
- */
+}
 
 #endif	/* DYNAMIC_LOADER_H */
 
