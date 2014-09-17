@@ -11,10 +11,10 @@ using namespace modus;
 
 class someext : public externalizable {
 public:
-  const int hash_code(){
+  int hash_code(){
     return x+1;
   }
-  const bool equals(externalizable * other){ 
+  bool equals(externalizable * other){ 
     someext * s;
     s = dynamic_cast<someext*>(other);
     return s->x == x;

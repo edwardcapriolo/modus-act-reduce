@@ -22,9 +22,9 @@
 using namespace std;
 
 // This is here because the c dynamic loader is c++ namespace unaware ?
-map<string, maker_t *, less<string> > modus_node_factory;
+std::map<std::string, maker_t *, std::less<string> > modus_node_factory;
 
-map<string, lmaker_t *, less<string> > modus_loader_factory;
+std::map<std::string, lmaker_t *, std::less<string> > modus_loader_factory;
 
 namespace modus {
 
@@ -41,20 +41,25 @@ node * load_node(string module_name, string node_name, event_based_actor * self,
     throw "Unable to open" ;
   }
   node * my_node = modus_node_factory[node_name](self, next);
-  dlclose(dlib);
+  //dlclose(dlib);
   return my_node;
 }
 
 loader * load_loader(string module_name, string loader_name, event_based_actor * self, actor * next){
+      cout << "here" <<endl;
   string path = "../dyn/lib" + module_name + ".so";
   void *dlib;
   dlib = dlopen(path.c_str(), RTLD_NOW);
+    cout << "here2" <<endl;
   if(dlib == NULL){
     cerr << dlerror() << endl;
+    cout << "null";
     throw "Unable to open" ;
   }
+  cout << "here3" <<endl;
   loader * my_loader =  modus_loader_factory[loader_name](self, next);
-  dlclose(dlib);
+  cout << "there" <<endl;
+  //dlclose(dlib);
   return my_loader;
 }
 

@@ -1,13 +1,8 @@
-/* 
- * File:   coutnode.cpp
- * Author: edward
- * 
- * Created on September 11, 2014, 7:08 PM
- */
-
 #include "coutnode.h"
 
+using namespace std;
 namespace modus {
+
 coutnode::coutnode( event_based_actor * parentc, actor * nextc) 
  : node (parentc, nextc) {
    
@@ -22,13 +17,13 @@ extern "C" {
     return new coutnode(parentc, nextc);
   }
   
-  class proxy { 
+  class node_proxy { 
     public:
-     proxy(){
+      node_proxy(){
         modus_node_factory["coutnode"] = maker;
-     }
+      }
   };
-  proxy p;
+  node_proxy node_proxy;
 }
 
 }

@@ -1,10 +1,3 @@
-/* 
- * File:   coutnode.h
- * Author: edward
- *
- * Created on September 11, 2014, 7:08 PM
- */
-
 #ifndef COUTNODE_H
 #define	COUTNODE_H
 
@@ -14,6 +7,7 @@
 #include "node.h"
 
 using namespace caf;
+using namespace std;
 
 map<string, maker_t *, less<string> > modus_node_factory;
 

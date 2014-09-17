@@ -1,27 +1,21 @@
-/* 
- * File:   loader.h
- * Author: edward
- *
- * Created on September 16, 2014, 9:16 AM
- */
 
 #ifndef LOADER_H
 #define	LOADER_H
+
 #include "caf/all.hpp"
 #include "caf/io/all.hpp"
 #include "externalizable.h"
 
 using namespace caf;
+using namespace std;
 
 class loader {
 public:
   loader(event_based_actor * parentc, actor * nextc) 
   : parent(parentc), next(nextc) { }
-  virtual void exec ();  
+  virtual void exec (){}  
 private:
-  /* The next actor in the chain*/
   actor * next;
-  /* The actor that created this node*/
   event_based_actor * parent;
 };
 

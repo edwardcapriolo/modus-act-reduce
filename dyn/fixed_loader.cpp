@@ -1,16 +1,19 @@
-/* 
- * File:   fixed_loader.cpp
- * Author: edward
- * 
- * Created on September 16, 2014, 6:46 PM
- */
-
 #include "fixed_loader.h"
 
+using namespace caf;
 namespace modus {
 
+fixed_loader::fixed_loader( event_based_actor * parentc, actor * nextc) 
+ : loader (parentc, nextc) {
+   
+}
+ 
+void fixed_loader::exec(){
+    
+}
+
 extern "C" {
-  node *lmaker(event_based_actor * parentc, actor * nextc) {
+  loader *lmaker(event_based_actor * parentc, actor * nextc) {
     return new fixed_loader(parentc, nextc);
   }
   
