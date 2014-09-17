@@ -8,11 +8,11 @@
 #ifndef EXTERNALIZABLE_H
 #define	EXTERNALIZABLE_H
 
-#include <pqxx/pqxx> 
+//#include <pqxx/pqxx> 
 #include "from.h"
 using namespace std;
 
-using namespace pqxx;
+//using namespace pqxx;
 
 /**
  * This interface will need to be heavily re-worked once we 
@@ -21,26 +21,20 @@ using namespace pqxx;
  */
 class externalizable {
 public:
-  /*
-   * write this object out to work
-   */
+  /**
   virtual void externalize(work & work, from & f) {}
-  /*
-   *create something this object can serialize itself to
-   */
   virtual void create_store(connection & conn) {}
-  /*
-   * use the result to set fields of this instance
-   */
   virtual void internalize(result & r) {}
-  /*
-   * Provide a hash code based on the object
-   */
-  virtual int hash_code(){}
+  */
+  const virtual int hash_code(){ }
+  const virtual bool equals(const externalizable * other){ return false; }
 };
 
 bool operator == (const externalizable& lhs, const externalizable& rhs){
+   // return lhs.equals(&rhs);
+    
   return false;
+  
 }
 
 

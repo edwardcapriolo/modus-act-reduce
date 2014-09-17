@@ -44,6 +44,18 @@ public:
     result.reduceFx = fx;
     return result;
   }
+  
+  void execute(){
+    uds_def * it = this;
+    while (it != NULL){
+      it = it->parent;      
+    }
+    if (it->feed == NULL){
+      throw "Root node must be a feed";
+    }
+    
+  }
+  
   uds_def* parent;
 private:
   feed_def<MyType> feed;

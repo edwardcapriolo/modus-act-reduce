@@ -16,7 +16,8 @@ using namespace caf;
 
 class node {
 public:
-  node(event_based_actor * parentc, actor * nextc) : parent(parentc), next(nextc) {}
+  node(event_based_actor * parentc, actor * nextc) 
+    : parent(parentc), next(nextc) { }
   virtual void process(externalizable * e){ }
 private:
   /* The next actor in the chain*/
@@ -26,7 +27,7 @@ private:
 };
 
 typedef node *maker_t(event_based_actor *, actor *);
-extern map<string, maker_t *, less<string> > factory;
+extern map<string, maker_t *, less<string> > modus_node_factory;
 
 #endif	/* OPERATOR_H */
 

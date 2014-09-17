@@ -11,11 +11,13 @@ using namespace modus;
 
 class someext : public externalizable {
 public:
-  void externalize(work & work, from & f) {}
-  void create_store(connection & conn) {}
-  void internalize(result & r) {}
-  int hash_code(){
+  const int hash_code(){
     return x+1;
+  }
+  const bool equals(externalizable * other){ 
+    someext * s;
+    s = dynamic_cast<someext*>(other);
+    return s->x == x;
   }
   int x;
 };
@@ -62,7 +64,7 @@ int main(){
   r.t = &e;
   
   cout << "dynamic";
-  node * cout_node = load_node("dyn", "coutnode", NULL,NULL);
+  node * cout_node = load_node("dyn", "coutnode", NULL, NULL);
   cout_node->process(&e);
   
   //announce<someext>(&someext::x);
