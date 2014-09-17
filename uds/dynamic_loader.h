@@ -46,19 +46,15 @@ node * load_node(string module_name, string node_name, event_based_actor * self,
 }
 
 loader * load_loader(string module_name, string loader_name, event_based_actor * self, actor * next){
-      cout << "here" <<endl;
   string path = "../dyn/lib" + module_name + ".so";
   void *dlib;
   dlib = dlopen(path.c_str(), RTLD_NOW);
-    cout << "here2" <<endl;
   if(dlib == NULL){
     cerr << dlerror() << endl;
-    cout << "null";
+    
     throw "Unable to open" ;
   }
-  cout << "here3" <<endl;
   loader * my_loader =  modus_loader_factory[loader_name](self, next);
-  cout << "there" <<endl;
   //dlclose(dlib);
   return my_loader;
 }

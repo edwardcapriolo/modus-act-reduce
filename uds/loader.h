@@ -14,7 +14,7 @@ public:
   loader(event_based_actor * parentc, actor * nextc) 
   : parent(parentc), next(nextc) { }
   virtual void exec (){}  
-private:
+protected:
   actor * next;
   event_based_actor * parent;
 };

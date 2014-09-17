@@ -4,6 +4,7 @@
 #include "uds.h"
 #include "node.h"
 #include "dynamic_loader.h"
+#include "datum.h"
 
 
 using namespace caf;
@@ -38,10 +39,10 @@ public:
 };
 void insert_request_actor(event_based_actor* self) {
   self->become (
-    on(val<insert_request>) >> [=](insert_request a){
+    on(val<datum>) >> [=](datum a){
       cout << "got "  << endl;
       mapper m;
-      m.map(a.t, invalid_actor);
+      m.map(a.payload, invalid_actor);
       //self->send(next, atom("r"), a+1);
     },
     others() >> [=] {
@@ -59,9 +60,9 @@ int main(){
   from f;
   f.id = 5;
   
-  insert_request r;
-  r.f = f;
-  r.t = &e;
+  datum r;
+  r.payload = &e;
+  r.source = f;
   
   cout << "dynamic";
   node * cout_node = load_node("dyn", "coutnode", NULL, NULL);
@@ -69,10 +70,10 @@ int main(){
   
   //announce<someext>(&someext::x);
   announce<from>(&from::id);
-  announce<insert_request>(&insert_request::f, &insert_request::t);
-  auto insert = spawn(insert_request_actor);
+  announce<datum>(&datum::source, &datum::payload);
+  actor insert = spawn(insert_request_actor);
   io::publish(insert, 9876);
   actor new_serv = io::remote_actor("localhost", 9876);
-  anon_send(new_serv, r);
+  anon_send(insert, r);
   std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 }

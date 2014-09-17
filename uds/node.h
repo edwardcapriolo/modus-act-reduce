@@ -14,7 +14,7 @@ public:
   node(event_based_actor * parentc, actor * nextc) 
     : parent(parentc), next(nextc) { }
   virtual void process(externalizable * e){ }
-private:
+protected:
   actor * next;
   event_based_actor * parent;
 };

@@ -12,16 +12,11 @@ using namespace std;
 map<string, lmaker_t *, less<string> > modus_loader_factory;
 
 namespace modus {
-    
+        
 class fixed_loader : public loader {
 public:
   fixed_loader(event_based_actor * parentc, actor * nextc);
-  void exec ();
-        /*
-        parent->send(next, fixed_int_externalizable{1} );
-        parent->send(next, fixed_int_externalizable{2} );
-        parent->send(next, fixed_int_externalizable{4} );
-         */   
+  void exec ();  
 private:
 };
 
