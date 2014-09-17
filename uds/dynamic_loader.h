@@ -33,7 +33,7 @@ namespace modus {
  */
     
 node * load_node(string module_name, string node_name, event_based_actor * self, actor * next){
-  string path = "dyn/lib" + module_name + ".so";
+  string path = "../dyn/lib" + module_name + ".so";
   void *dlib;
   dlib = dlopen(path.c_str(), RTLD_NOW);
   if(dlib == NULL){
@@ -41,11 +41,12 @@ node * load_node(string module_name, string node_name, event_based_actor * self,
     throw "Unable to open" ;
   }
   node * my_node = modus_node_factory[node_name](self, next);
+  dlclose(dlib);
   return my_node;
 }
 
 loader * load_loader(string module_name, string loader_name, event_based_actor * self, actor * next){
-  string path = "dyn/lib" + module_name + ".so";
+  string path = "../dyn/lib" + module_name + ".so";
   void *dlib;
   dlib = dlopen(path.c_str(), RTLD_NOW);
   if(dlib == NULL){
@@ -53,6 +54,7 @@ loader * load_loader(string module_name, string loader_name, event_based_actor *
     throw "Unable to open" ;
   }
   loader * my_loader =  modus_loader_factory[loader_name](self, next);
+  dlclose(dlib);
   return my_loader;
 }
 
