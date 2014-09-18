@@ -5,9 +5,12 @@
 #include "caf/all.hpp"
 #include "caf/io/all.hpp"
 #include "externalizable.h"
+#include "datum.h"
 
 using namespace caf;
 using namespace std;
+
+using node_type = typed_actor<replies_to<modus::datum>::with<void>>;
 
 class node {
 public:

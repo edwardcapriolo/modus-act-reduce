@@ -14,15 +14,14 @@ fixed_loader::fixed_loader( event_based_actor * parentc, actor * nextc)
 void fixed_loader::fixed_loader::exec(){
   from f;
   f.id = 42;
+  
   announce<from> (&from::id);
-  announce<datum>( &datum::payload, &datum::source );
+  announce<datum>(&datum::payload, &datum::source);
   datum d;
   d.source = f;
-  //this->parent->send(next,from);
-  //parent->send(next, from);
-  //parent->send(next, d);
-  //parent->send(next, e);
-  //anon_send(*next,d);
+  int_externalizable * i = new int_externalizable();
+  i->x = 5;
+  d.payload = i;
   parent->send(*next, d);
         
 }

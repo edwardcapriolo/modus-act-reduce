@@ -20,5 +20,10 @@ public:
     loader * loader_node = load_loader("fixed", "fixed_loader", NULL, NULL);
     CPPUNIT_ASSERT( loader_node != NULL );
   }
+  
+  void testChain () {
+    node * cout_node = load_node("dyn", "coutnode", NULL, NULL);
+    loader * loader_node = load_loader("fixed", "fixed_loader", NULL, NULL);  
+  }
 };
 CPPUNIT_TEST_SUITE_REGISTRATION( loader_test );
