@@ -1,23 +1,22 @@
 #include "coutnode.h"
 #include "datum.h"
 using namespace std;
+using namespace caf;
+
 namespace modus {
     
-
-
-coutnode::coutnode( event_based_actor * parentc, actor * nextc) 
- : node (parentc, nextc) {
+coutnode::coutnode( ) 
+ : node () {
    
 }
 
-void coutnode::process(externalizable * e){
-  cout << e->hash_code() << endl;
+void coutnode::process(const modus::datum req){
+  cout << req.payload->hash_code() << "hash" << endl;
 }
 
-
 extern "C" {
-  node *maker(event_based_actor * parentc, actor * nextc) {
-    return new coutnode(parentc, nextc);
+  node *maker() {
+    return new coutnode();
   }
   
   class node_proxy { 

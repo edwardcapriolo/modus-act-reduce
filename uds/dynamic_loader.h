@@ -32,7 +32,7 @@ namespace modus {
  * 
  */
     
-node * load_node(string module_name, string node_name, event_based_actor * self, actor * next){
+node * load_node(string module_name, string node_name){
   string path = "../dyn/lib" + module_name + ".so";
   void *dlib;
   dlib = dlopen(path.c_str(), RTLD_NOW);
@@ -40,7 +40,7 @@ node * load_node(string module_name, string node_name, event_based_actor * self,
     cerr << dlerror() << endl;
     throw "Unable to open" ;
   }
-  node * my_node = modus_node_factory[node_name](self, next);
+  node * my_node = modus_node_factory[node_name]();
   //dlclose(dlib);
   return my_node;
 }

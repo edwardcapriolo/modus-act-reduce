@@ -10,19 +10,48 @@
 using namespace caf;
 using namespace std;
 
-using node_type = typed_actor<replies_to<modus::datum>::with<void>>;
-
-class node {
+class node  {
 public:
-  node(event_based_actor * parentc, actor * nextc) 
-    : parent(parentc), next(nextc) { }
-  virtual void process(externalizable * e){ }
+  node() { }
+  virtual void process(modus::datum  d){}
+  void set_parent(event_based_actor * par){ parent = par; }
+  void set_next(actor * nex) { next = nex; }
 protected:
   actor * next;
   event_based_actor * parent;
 };
 
-typedef node *maker_t(event_based_actor *, actor *);
+namespace modus {
+
+void modus_node_actor_end(event_based_actor * self, node * processor){
+  processor->set_parent(self);
+  self->become (
+    on(val<datum>) >> [=](datum a){
+      processor->process(a);
+    },
+    others() >> [=] {
+        aout(self) << "Node has malformed tuple";
+    }
+  );      
+}
+
+void modus_node_actor(event_based_actor * self, node * processor, actor * next){
+  processor->set_parent(self);
+  processor->set_next(next);
+  self->become (
+    on(val<datum>) >> [=](datum a){
+      cout << "got "  << endl;
+      processor->process(a);
+    },
+    others() >> [=] {
+        aout(self) << "Node has malformed tuple";
+    }
+  );
+}
+
+}
+
+typedef node *maker_t();
 extern map<string, maker_t *, less<string> > modus_node_factory;
 
 #endif	/* NODE_H */

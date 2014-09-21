@@ -65,8 +65,8 @@ int main(){
   r.source = f;
   
   cout << "dynamic";
-  node * cout_node = load_node("dyn", "coutnode", NULL, NULL);
-  cout_node->process(&e);
+  node * cout_node = load_node("dyn", "coutnode");
+  cout_node->process(r);
   
   //announce<someext>(&someext::x);
   announce<from>(&from::id);
