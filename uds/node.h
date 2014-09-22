@@ -16,6 +16,12 @@ public:
   virtual void process(modus::datum  d){}
   void set_parent(event_based_actor * par){ parent = par; }
   void set_next(actor * nex) { next = nex; }
+  actor * get_next(){
+    return next;
+  }
+  event_based_actor * get_parent(){
+    return parent;
+  }
 protected:
   actor * next;
   event_based_actor * parent;

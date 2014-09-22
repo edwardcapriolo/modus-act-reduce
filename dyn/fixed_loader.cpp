@@ -6,15 +6,13 @@
 using namespace caf;
 namespace modus {
 
-fixed_loader::fixed_loader( event_based_actor * parentc, actor * nextc) 
- : loader (parentc, nextc) {
+fixed_loader::fixed_loader( ) {
     
 }
  
 void fixed_loader::fixed_loader::exec(){
-  from f;
-  f.id = 42;
-  
+  from f(42);
+ 
   announce<from> (&from::id);
   announce<datum>(&datum::payload, &datum::source);
   datum d;
@@ -22,13 +20,13 @@ void fixed_loader::fixed_loader::exec(){
   int_externalizable * i = new int_externalizable();
   i->x = 5;
   d.payload = i;
-  parent->send(*next, d);
-        
+  //anon_send(*next, d);
+  parent->send(*next, d);      
 }
 
 extern "C" {
-  loader *lmaker(event_based_actor * parentc, actor * nextc) {
-    return new fixed_loader(parentc, nextc);
+  loader *lmaker() {
+    return new fixed_loader();
   }
   
   class proxy { 

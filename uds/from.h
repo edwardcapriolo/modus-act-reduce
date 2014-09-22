@@ -13,6 +13,10 @@
  */
 class from {
 public:
+  from(){}
+  from(int tid){
+    id = tid;
+  }  
   int id;    
 };
 

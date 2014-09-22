@@ -15,7 +15,7 @@ namespace modus {
         
 class fixed_loader : public loader {
 public:
-  fixed_loader(event_based_actor * parentc, actor * nextc);
+  fixed_loader();
   void exec ();  
 private:
 };

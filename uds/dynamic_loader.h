@@ -45,7 +45,7 @@ node * load_node(string module_name, string node_name){
   return my_node;
 }
 
-loader * load_loader(string module_name, string loader_name, event_based_actor * self, actor * next){
+loader * load_loader(string module_name, string loader_name){
   string path = "../dyn/lib" + module_name + ".so";
   void *dlib;
   dlib = dlopen(path.c_str(), RTLD_NOW);
@@ -54,7 +54,7 @@ loader * load_loader(string module_name, string loader_name, event_based_actor *
     
     throw "Unable to open" ;
   }
-  loader * my_loader =  modus_loader_factory[loader_name](self, next);
+  loader * my_loader =  modus_loader_factory[loader_name]();
   //dlclose(dlib);
   return my_loader;
 }
