@@ -16,7 +16,8 @@ namespace modus {
 class fixed_loader : public loader {
 public:
   fixed_loader();
-  void exec ();  
+  void exec ();
+  string get_register_name(); 
 private:
 };
 

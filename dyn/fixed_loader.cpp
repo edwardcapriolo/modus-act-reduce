@@ -10,6 +10,10 @@ fixed_loader::fixed_loader( ) {
     
 }
  
+string fixed_loader::get_register_name(){ 
+  return string("fixed_loader");
+}
+
 void fixed_loader::fixed_loader::exec(){
   from f(42);
  

@@ -13,7 +13,11 @@ using namespace std;
 class loader {
 public:
   loader() { }
-  virtual void exec (){}  
+  virtual void exec (){}
+  /**
+   * @return the name that this loader instances will register with
+   */  
+  virtual string get_register_name() = 0;
   void set_next(actor * nex){
     next = nex;
   }

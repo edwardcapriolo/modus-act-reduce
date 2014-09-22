@@ -24,6 +24,7 @@ public:
   void testLoader () { 
     loader * loader_node = load_loader("fixed", "fixed_loader");
     CPPUNIT_ASSERT( loader_node != NULL );
+    CPPUNIT_ASSERT( "fixed_loader" == loader_node->get_register_name() );
   }
   
   void testChain () {
