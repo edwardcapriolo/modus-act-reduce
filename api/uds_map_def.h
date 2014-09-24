@@ -1,26 +1,16 @@
-/* 
- * File:   uds_map_def.h
- * Author: edward
- *
- * Created on September 7, 2014, 12:08 PM
- */
-
 #ifndef UDS_MAP_DEF_H
 #define	UDS_MAP_DEF_H
 #include "uds_def.h"
-#include "fx.h"
+#include "node.h"
 
-/*
-template <class Returns, class Takes>
-class uds_map_def : public uds_def<Returns> {
+class uds_map_def : public uds_def {
 public:
-  uds_map_def(){
-  }
-  fx <Returns, Takes> mapFx;
-  uds_def<Takes>* parent;
-private:       
+  uds_map_def();
+  uds_map_def(node n); 
+  virtual ~uds_map_def();
+private:
+  node node;
 };
-*/
 
 #endif	/* UDS_MAP_DEF_H */
 

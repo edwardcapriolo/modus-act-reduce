@@ -13,6 +13,8 @@ ENDFOREACH(test)
 
 include_directories (${PROJECT_SOURCE_DIR}/api)
 include_directories (${PROJECT_SOURCE_DIR}/uds)
+link_directories (${PROJECT_SOURCE_DIR}/api)
+link_directories (${PROJECT_SOURCE_DIR}/uds)
 
-target_link_libraries (UnitTester cppunit curl caf_core caf_io dl)
+target_link_libraries (UnitTester cppunit curl caf_core caf_io dl actred-api)
 

@@ -1,9 +1,6 @@
-include_directories (${PROJECT_SOURCE_DIR}/../etcdcpp)
-include_directories (${PROJECT_SOURCE_DIR}/../modus/guild)
 include_directories (${PROJECT_SOURCE_DIR}/api)
 include_directories (${PROJECT_SOURCE_DIR}/uds)
 
-link_directories (${PROJECT_SOURCE_DIR}/../modus/guild )
 
 add_executable (udsdemo udsdemo.cpp)
 

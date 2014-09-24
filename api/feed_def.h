@@ -13,7 +13,6 @@ public:
   }    
 };
 
-template <class T>
 class feed_def {
 public:
   feed_def(){
@@ -23,8 +22,7 @@ public:
   vector<feed_partition> get_splits() { }  
 };
 
-template<class T>
-class file_feed_def : public feed_def<T> {
+class file_feed_def : public feed_def    {
 public:
   file_feed_def(string filename){
     this->filename = filename;

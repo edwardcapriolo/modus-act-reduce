@@ -21,11 +21,13 @@ public:
     return g;
   }
   
-  template <class T>
-  uds_def<T> load(feed_def<T> f){
-    uds_def<T> d ;
+  uds_def * load(feed_def f){
+    /*  
+    uds_def d ;
     d.set_feed(f);
     return d;    
+     */
+      return NULL;
   }
 private:
   guild * g;  

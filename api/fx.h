@@ -7,7 +7,6 @@
 
 #ifndef FX_H
 #define	FX_H
-template <class Return, class Takes>
 class fx {
     
 };
