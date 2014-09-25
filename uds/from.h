@@ -20,7 +20,7 @@ public:
   int id;    
 };
 
-bool operator == (const from& lhs, const from& rhs){
+inline bool operator == (const from& lhs, const from& rhs){
   return lhs.id == rhs.id;
 }
 

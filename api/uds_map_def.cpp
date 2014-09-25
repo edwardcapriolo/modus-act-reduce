@@ -10,6 +10,11 @@
 uds_map_def::uds_map_def() {
 }
 
+uds_map_def::uds_map_def(node * n1){
+  n = n1;
+}
+
 uds_map_def::~uds_map_def() {
+  
 }
 

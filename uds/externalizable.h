@@ -10,7 +10,7 @@ public:
   virtual bool equals(externalizable * other){ return false; }
 };
 
-bool operator == (const externalizable& lhs, const externalizable& rhs){
+inline bool operator == (const externalizable& lhs, const externalizable& rhs){
    // return lhs.equals(&rhs);
   return false;
 }

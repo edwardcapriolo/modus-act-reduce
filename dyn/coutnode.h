@@ -10,8 +10,10 @@
 using namespace caf;
 using namespace std;
 
+/*
 map<string, maker_t *, less<string> > modus_node_factory;
-
+*/
+ 
 namespace modus {
 
 class coutnode : public node  {

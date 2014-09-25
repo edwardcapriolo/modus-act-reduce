@@ -1,10 +1,3 @@
-/* 
- * File:   datum.h
- * Author: edward
- *
- * Created on September 17, 2014, 9:42 AM
- */
-
 #ifndef DATUM_H
 #define	DATUM_H
 
@@ -17,7 +10,7 @@ public:
   from source;
 };
 
-bool operator == (const datum& lhs, const datum& rhs) {
+inline bool operator == (const datum& lhs, const datum& rhs) {
   return lhs.payload == rhs.payload && lhs.source == rhs.source;
 }
 

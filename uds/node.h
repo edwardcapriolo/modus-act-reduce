@@ -27,9 +27,18 @@ protected:
   event_based_actor * parent;
 };
 
+
+
+/*
+void modus_node_actor(event_based_actor * self, node * processor, actor * next);
+
+void modus_node_actor_end(event_based_actor * self, node * processor);
+ 
+ */ 
 namespace modus {
 
-void modus_node_actor_end(event_based_actor * self, node * processor){
+    
+inline void modus_node_actor_end(event_based_actor * self, node * processor){
   processor->set_parent(self);
   self->become (
     on(val<datum>) >> [=](datum a){
@@ -41,7 +50,7 @@ void modus_node_actor_end(event_based_actor * self, node * processor){
   );      
 }
 
-void modus_node_actor(event_based_actor * self, node * processor, actor * next){
+inline void modus_node_actor(event_based_actor * self, node * processor, actor * next){
   processor->set_parent(self);
   processor->set_next(next);
   self->become (
@@ -54,7 +63,8 @@ void modus_node_actor(event_based_actor * self, node * processor, actor * next){
     }
   );
 }
-
+    
+    
 }
 
 typedef node *maker_t();

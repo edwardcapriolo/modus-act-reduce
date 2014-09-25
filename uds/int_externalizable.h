@@ -23,7 +23,7 @@ public:
   int x;
 };
 
-bool operator == (const int_externalizable& lhs, const int_externalizable& rhs){
+inline bool operator == (const int_externalizable& lhs, const int_externalizable& rhs){
     return lhs.x == rhs.x;
 }
 

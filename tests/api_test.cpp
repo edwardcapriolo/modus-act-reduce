@@ -2,6 +2,10 @@
 #include <cppunit/extensions/HelperMacros.h>
 #include <caf/await_all_actors_done.hpp>
 #include "uds_def.h"
+#include "uds.h"
+#include "coutnode.h"
+
+using namespace modus;
 
 class api_test : public CppUnit::TestFixture {
   CPPUNIT_TEST_SUITE( api_test );
@@ -11,7 +15,9 @@ class api_test : public CppUnit::TestFixture {
 public:
 
   void testCout () {
-    uds_def f;
+    uds u;
+    node * n = new coutnode();
+    uds * map_step = u.map( n);
   }
  
 };
